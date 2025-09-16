@@ -32,11 +32,96 @@
     .notice p {
       margin: 0.8em 0;
     }
-    footer {
+    footer2 {
       margin-top: 3em;
       font-size: 0.9em;
       color: #aaa;
       text-align: right;
+      /* ヘッダー */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 2em;
+      background-color: #32a9cd;
+      color: #fff;
+    }
+    .title-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      border: none;
+    }
+    .subtitle {
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      font-size: 1em;
+      text-align: center;
+      color: #fff;
+    }
+    /* 検索 */
+    .search {
+      display: flex;
+      align-items: center;
+    }
+    .search input {
+      padding: 4px;
+      border: 2px solid #003366;
+      border-radius: 4px;
+      width: 150px;
+      background-color: #fff;
+      color: #003366;
+    }
+    .search input::placeholder {
+      color: #003366aa;
+    }
+    .search button {
+      padding: 4px 6px;
+      margin-left: 4px;
+      border-radius: 4px;
+      border: none;
+      background-color: #003366;
+      color: #fff;
+      cursor: pointer;
+    }
+    .search button:hover {
+      background-color: #001f33;
+    }
+/* ナビゲーション */
+    nav {
+      text-align: center;
+      padding: 1em 0;
+      background-color: #f0f0f0;
+    }
+    nav a {
+      color: #003366;
+      margin: 0 1em;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #32a9cd;
+    }
+/* コンテンツ */
+    .content {
+      max-width: 1000px;
+      margin: 2em auto;
+      padding: 0 1em;
+    }
+/* フッター */
+    footer {
+      background-color: #32a9cd;
+      color: #ffffff;
+      text-align: center;
+      padding: 1em;
+      margin-top: 3em;
+    }
     }
   </style>
 </head>
@@ -46,13 +131,17 @@
   <div class="notice">
     <h2>マイページログイン方法変更のお知らせ</h2>
     <p>2025年9月より、社員マイページへのログインには <strong>社員コード</strong> と <strong>パスワード</strong> の入力が必要となりました。</p>
-    <p>各社員の初期パスワードはご自身の「生年月日」となります。セキュリティ強化のため、お手隙の際に各自パスワードを再設定してください。</p>
+    <p>パスワードはご自身の「生年月日」となります。</p>
     <p>不明点がある場合は、情報システム担当 福井までお問い合わせください。</p>
   </div>
 
-  <footer>
+  <footer2>
     株式会社 狭間書房　情報システム担当　福井<br>
     2025年8月01日
+  </footer2>
+
+    <footer>
+    <p>© 2025 狭間書房</p>
   </footer>
 </body>
 </html>
