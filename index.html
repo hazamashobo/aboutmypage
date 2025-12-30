@@ -2,14 +2,23 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>社内連絡　マイページについて | 狭間書房</title>
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
     body {
       background-color: #111;
       color: #f5f5f5;
       font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
-      margin: 0;
-      padding: 0;
       line-height: 1.8;
     }
 
@@ -21,20 +30,39 @@
       padding: 1em 2em;
       background-color: #666;
       color: #fff;
+      flex-shrink: 0;
+      gap: 2em;
+      box-sizing: border-box;
+      width: 100%;
     }
     .title-wrapper {
       display: flex;
       flex-direction: column;
     }
+    .title-wrapper a {
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .title-wrapper a:hover h1 {
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
     header h1 {
       margin: 0;
-      font-size: 2.2em;
+      font-size: 3em;
       letter-spacing: 0.1em;
-      line-height: 1.2;
+      line-height: 1;
       border: none;
+      font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
+      font-weight: 700;
     }
     .subtitle {
       margin: 0;
+      padding: 0;
+      line-height: 1;
       font-size: 1em;
       text-align: center;
       color: #fff;
@@ -44,29 +72,38 @@
     .search {
       display: flex;
       align-items: center;
+      gap: 0.5em;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+    .search form {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
     }
     .search input {
       padding: 4px;
-      border: 2px solid #003366;
+      border: 2px solid #333;
       border-radius: 4px;
       width: 150px;
       background-color: #fff;
-      color: #003366;
+      color: #333;
     }
     .search input::placeholder {
-      color: #003366aa;
+      color: #333aa;
     }
     .search button {
       padding: 4px 6px;
-      margin-left: 4px;
       border-radius: 4px;
       border: none;
-      background-color: #003366;
+      background-color: #333;
       color: #fff;
       cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .search button:hover {
-      background-color: #001f33;
+      background-color: #222;
     }
 
     /* ナビゲーション */
@@ -74,12 +111,18 @@
       text-align: center;
       padding: 1em 0;
       background-color: #f0f0f0;
+      flex-shrink: 0;
+      overflow-x: auto;
+      box-sizing: border-box;
+      width: 100%;
     }
     nav a {
       color: #003366;
       margin: 0 1em;
       text-decoration: none;
       font-weight: bold;
+      display: inline-block;
+      white-space: nowrap;
     }
     nav a:hover {
       color: #666;
@@ -89,12 +132,20 @@
       border-bottom: 2px solid #666;
     }
 
-    /* コンテンツ */
-    h1 {
-      font-size: 1.8em;
-      margin: 1.5em 0 0.5em;
-      padding-bottom: 0.3em;
-      border-bottom: 1px solid #444;
+    /* メインコンテンツ */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 0 2em;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    main h1 {
+      color: #f5f5f5;
+      font-size: 2em;
+      margin-bottom: 1em;
       text-align: center;
     }
 
@@ -105,6 +156,7 @@
       background-color: #1a1a1a;
       border-left: 4px solid #666;
       box-shadow: 0 0 12px rgba(0,0,0,0.4);
+      box-sizing: border-box;
     }
     .notice h2 {
       font-size: 1.3em;
@@ -113,31 +165,172 @@
     }
     .notice p {
       margin: 0.8em 0;
+      word-wrap: break-word;
     }
 
-    /* フッター */
+    /* フッター情報 */
     .footer2 {
-      margin: 3em auto;
+      max-width: 800px;
+      margin: 3em auto 2em;
       font-size: 0.9em;
       color: #aaa;
       text-align: right;
-      max-width: 800px;
+      padding: 0 2em;
+      box-sizing: border-box;
     }
 
+    /* フッター */
     footer {
       background-color: #666;
       color: #ffffff;
       text-align: center;
       padding: 1em;
-      margin-top: 2em;
+      flex-shrink: 0;
+      margin-top: auto;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      header {
+        padding: 1em;
+        justify-content: center;
+        text-align: center;
+        flex-wrap: wrap;
+        gap: 1em;
+      }
+
+      header h1 {
+        font-size: 2em;
+      }
+
+      .title-wrapper {
+        width: 100%;
+      }
+
+      .search {
+        width: 100%;
+      }
+
+      .search form {
+        width: 100%;
+        display: flex;
+      }
+
+      .search input {
+        width: 100%;
+        flex: 1;
+      }
+
+      nav a {
+        margin: 0 0.5em;
+        font-size: 0.9em;
+      }
+
+      main {
+        padding: 0 1em;
+        margin: 1em auto;
+      }
+
+      main h1 {
+        font-size: 1.5em;
+      }
+
+      .notice {
+        padding: 1.2em;
+        margin: 1.5em auto;
+      }
+
+      .notice h2 {
+        font-size: 1.2em;
+      }
+
+      .notice p {
+        font-size: 0.95em;
+      }
+
+      .footer2 {
+        padding: 0 1em;
+        margin: 2em auto 1.5em;
+        font-size: 0.85em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        flex-direction: column;
+        gap: 0.5em;
+      }
+
+      header h1 {
+        font-size: 1.5em;
+      }
+
+      .subtitle {
+        font-size: 0.9em;
+      }
+
+      .search {
+        width: 100%;
+      }
+
+      .search input {
+        width: 100%;
+        padding: 0.5em;
+      }
+
+      .search button {
+        padding: 0.5em 0.8em;
+        font-size: 0.9em;
+      }
+
+      nav a {
+        margin: 0 0.3em;
+        font-size: 0.8em;
+      }
+
+      main {
+        padding: 0 0.8em;
+        margin: 0.8em auto;
+      }
+
+      main h1 {
+        font-size: 1.3em;
+        margin-bottom: 0.8em;
+      }
+
+      .notice {
+        padding: 1em;
+        margin: 1em auto;
+      }
+
+      .notice h2 {
+        font-size: 1.1em;
+        margin-bottom: 0.8em;
+      }
+
+      .notice p {
+        font-size: 0.9em;
+        margin: 0.6em 0;
+      }
+
+      .footer2 {
+        padding: 0 0.8em;
+        margin: 1.5em auto 1em;
+        font-size: 0.8em;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="title-wrapper">
-      <h1>狭間書房</h1>
-      <p class="subtitle">Hazama Publishing</p>
+      <a href="https://hazamashobo.github.io/main/index.html">
+        <h1>狭間書房</h1>
+        <p class="subtitle">Hazama Publishing</p>
+      </a>
     </div>
     <div class="search">
       <form action="https://hazamashobo.github.io/result/" method="get">
@@ -154,24 +347,25 @@
     <a href="https://hazamashobo.github.io/contact/index.html" class="active">お問い合わせ</a>
   </nav>
 
-  <h1>社内連絡　「マイページ」について</h1>
+  <main>
+    <h1>社内連絡　「マイページ」について</h1>
 
-  <div class="notice">
-    <h2>「マイページ」ログイン方法変更のお知らせ</h2>
-    <p>2025年9月より、社員マイページへのログインには <strong>社員コード</strong> と <strong>パスワード</strong> の入力が必要となりました。</p>
-    <p>初期パスワードはご自身の「生年月日」となります。</p>
-    <p>セキュリティの観点からも、お手隙の際にご自身のパスワードに変更をしてください。</p>
-    <p>不明点がある場合は、情報システム担当 福井までお問い合わせください。</p>
-  </div>
+    <div class="notice">
+      <h2>「マイページ」ログイン方法変更のお知らせ</h2>
+      <p>2025年9月より、社員マイページへのログインには <strong>社員コード</strong> と <strong>パスワード</strong> の入力が必要となりました。</p>
+      <p>初期パスワードはご自身の「生年月日」となります。</p>
+      <p>セキュリティの観点からも、お手隙の際にご自身のパスワードに変更をしてください。</p>
+      <p>不明点がある場合は、情報システム担当 福井までお問い合わせください。</p>
+    </div>
 
-  <div class="footer2">
-    株式会社 狭間書房　情報システム担当　福井<br>
-    2025年08月01日
-  </div>
+    <div class="footer2">
+      株式会社 狭間書房　情報システム担当　福井<br>
+      2025年08月01日
+    </div>
+  </main>
 
   <footer>
     <p>© 2025 狭間書房</p>
   </footer>
 </body>
 </html>
-
